@@ -1,24 +1,29 @@
 package nu.sebka.main;
 
+import java.io.IOException;
 import java.util.Random;
 
 import org.lwjgl.opengl.GL11;
+import org.newdawn.slick.opengl.Texture;
+import org.newdawn.slick.opengl.TextureLoader;
+import org.newdawn.slick.util.ResourceLoader;
 
 
 public class Block extends Instance {
 	
-	float size = 0.05f;
+	private static float size = 0.04f;
+	public Texture[] textures = new Texture[6];
 	Random random = new Random();
 	public Block(float x, float y, float z) {
 		super(x, y, z);
-		// TODO Auto-generated constructor stub
+	
 	}
 
 	@Override
 	public void tick() {
-		if(random.nextInt(50) == 0){
-		y += 0.01f;
-		}
+		//if(random.nextInt(50) == 0){
+		//y += 0.01f;
+		//}
 		
 	}
 
@@ -26,9 +31,11 @@ public class Block extends Instance {
 	public void draw() {
 		
 		
-		if(Main.dirttext != null){
-		Main.dirttext.bind();
+		
+		if(textures[0] != null){
+			textures[0].bind();
 		}
+		
 		
 		
 		// White side - BACK
@@ -40,6 +47,11 @@ public class Block extends Instance {
 		GL11.glTexCoord2f(1,1);	GL11.glVertex3f( x+-size, y+-size,z+ size );
 		GL11.glEnd();
 		
+		
+		if(textures[1] != null){
+			textures[1].bind();
+		}
+		
 		// White side - FRONT
 		GL11.glBegin(GL11.GL_POLYGON);
 		GL11.glColor3f(   1.0f,  1.0f,  1.0f );
@@ -49,6 +61,11 @@ public class Block extends Instance {
 		GL11.glTexCoord2f(1,1);	GL11.glVertex3f( x+-size, y+-size,z- size );
 		GL11.glEnd();
 		 
+		
+		if(textures[2] != null){
+			textures[2].bind();
+		}
+		
 		// Purple side - RIGHT
 		GL11.glBegin(GL11.GL_POLYGON);
 		GL11.glColor3f(   1.0f,  1.0f,  1.0f );
@@ -58,6 +75,12 @@ public class Block extends Instance {
 		GL11.glTexCoord2f(1,1);	GL11.glVertex3f( x+size,y+ -size,z+  size );
 		GL11.glEnd();
 		 
+		
+		if(textures[3] != null){
+			textures[3].bind();
+		}
+		
+		
 		// Green side - LEFT
 		GL11.glBegin(GL11.GL_POLYGON);
 		GL11.glColor3f(   1.0f,  1.0f,  1.0f );
@@ -68,9 +91,9 @@ public class Block extends Instance {
 		GL11.glEnd();
 		 
 		
-		if(Main.grasstext != null){
-			Main.grasstext.bind();
-			}
+		if(textures[4] != null){
+			textures[4].bind();
+		}
 		
 		// Blue side - TOP
 		GL11.glBegin(GL11.GL_POLYGON);
@@ -81,9 +104,9 @@ public class Block extends Instance {
 		GL11.glTexCoord2f(1,1);	GL11.glVertex3f(x+-size,  y+size, z+ size );
 		GL11.glEnd();
 		 
-		if(Main.dirttext != null){
-			Main.dirttext.bind();
-			}
+		if(textures[5] != null){
+			textures[5].bind();
+		}
 		
 		// Red side - BOTTOM
 		GL11.glBegin(GL11.GL_POLYGON);
@@ -101,6 +124,10 @@ public class Block extends Instance {
 		
 		
 		
+	}
+	
+	public static float getSize(){
+		return size*2;
 	}
 	
 	

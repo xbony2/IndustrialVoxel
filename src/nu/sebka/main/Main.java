@@ -1,7 +1,12 @@
 package nu.sebka.main;
 
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
+
+import nu.sebka.main.blocks.AirBlock;
+import nu.sebka.main.blocks.CobbleBlock;
+import nu.sebka.main.blocks.GrassBlock;
+import nu.sebka.main.blocks.LogBlock;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Keyboard;
@@ -9,18 +14,13 @@ import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
-import org.lwjgl.util.glu.GLU;
-import org.newdawn.slick.opengl.Texture;
-import org.newdawn.slick.opengl.TextureLoader;
-import org.newdawn.slick.util.ResourceLoader;
 
 public class Main {
 
 	public static int SCALE = 2;
 	public static int WIDTH = (640) * SCALE;
 	public static int HEIGHT = (WIDTH / 16 * 9);
-	public static Texture dirttext;
-	public static Texture grasstext;
+
 
 	float xx = 0, yy = -0.4f, zz = 6.5f;
 	
@@ -33,7 +33,7 @@ public class Main {
 	public static ArrayList<Instance> instances = new ArrayList<Instance>();
 
 	public Main(){
-
+		
 		try {
 			Display.setDisplayMode(new DisplayMode(WIDTH, HEIGHT));
 			Display.setTitle("Minecraft");
@@ -44,62 +44,111 @@ public class Main {
 			e.printStackTrace();
 		}
 
-		for(float i = 0; i < 16; i+=0.1f){
-			for(float ii= 0; ii < 16; ii+=0.1f){
-				instances.add(new Block(i,-0.1f,-ii));
+		for(int i = 0; i < 16; i+=1){
+			for(int ii = 0; ii < 16; ii+=1){
+				instances.add(new GrassBlock(i*Block.getSize(),0,-ii*Block.getSize()));
+				
 			}
 		}
+		Random random = new Random();
+		for(int i = 0; i < 16; i+=1){
+			for(int ii = 0; ii < 16; ii+=1){
+				
+				if(random.nextInt(10) == 0){
+				instances.add(new CobbleBlock(i*Block.getSize(),Block.getSize(),-ii*Block.getSize()));
+				}
+				
+			}
+		}
+		
+		for(int i = 0; i < 4; i++){
+			instances.add(new LogBlock(Block.getSize()*4,Block.getSize()+i*Block.getSize(),-Block.getSize()*4));
+		}
 
-		GL11.glMatrixMode(GL11.GL_PROJECTION);
-		GL11.glLoadIdentity();
+		
 
-		GLU.gluPerspective((float)30f, (float)WIDTH/HEIGHT, 0.001f, 100f);
-		GL11.glMatrixMode(GL11.GL_MODELVIEW);
-		GL11.glDepthFunc(GL11.GL_LEQUAL);
-		GL11.glHint(GL11.GL_PERSPECTIVE_CORRECTION_HINT,GL11.GL_NICEST);
-		GL11.glEnable(GL11.GL_DEPTH_TEST);
-		GL11.glEnable(GL11.GL_NORMALIZE);
-		GL11.glEnable(GL11.GL_TEXTURE_2D);
+		
 
-
-
-
-		//GL11.glEnable(GL11.GL_CULL_FACE);
-
-		GL11.glTexParameterf(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST);
-		GL11.glEnable(GL11.GL_COLOR_MATERIAL);
-		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-		GL11.glEnable(GL11.GL_BLEND);
-		loadTextures();
-		GL11.glRotatef(10, 1.0f, 0.0f, 0.f);
-		GL11.glRotatef(30, 0.0f, 1.0f, 0.f);
-
+		Camera cam = new Camera(70, (float) WIDTH / (float) HEIGHT, 0.03f,1000);
+		cam.setY(-Block.getSize()*2);
 		while(!Display.isCloseRequested()){
-			
-			GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
 			
 			
 			tick();
 			
+			boolean falling = false;
+			
+			if(getBlockAt(cam.getX(),cam.getY()+Block.getSize()*2,cam.getZ()) instanceof AirBlock){
+				System.out.println("COBBLE!");
+				falling = true;
+			}
+			
+			if(falling){
+				cam.setY(cam.getY()+0.01f);
+			}
+			if(Keyboard.isKeyDown(Keyboard.KEY_W)){
+				cam.move(1, 0.01f);
+			}
+			
+			if(Keyboard.isKeyDown(Keyboard.KEY_SPACE)){
+				cam.setY(cam.getY()-Block.getSize()/2);
+			}
+			
+			if(Keyboard.isKeyDown(Keyboard.KEY_RETURN)){
+				instances.add(new CobbleBlock(-cam.getX(),-cam.getY(),-cam.getZ()));
+			}
 			
 			
 			
-			GL11.glTranslatef(xx, yy, zz);
+			if(Keyboard.isKeyDown(Keyboard.KEY_LEFT)){
+				cam.setRY(cam.getRY()-3);
+			}
+			
+			if(Keyboard.isKeyDown(Keyboard.KEY_RIGHT)){
+				cam.setRY(cam.getRY()+3);
+			}
+			
+			
+			float mx = Mouse.getX();
+			float my = HEIGHT - Mouse.getY() +1;
+			
+			float centerx = WIDTH/2;
+			float centery = HEIGHT/2;
+			
+			cam.setRY(cam.getRY()+Mouse.getDX());
+			cam.setRX(cam.getRX()-Mouse.getDY());
+			
+			
+			GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
+			GL11.glLoadIdentity();
+			cam.useView();
+			
+			
+			
+			
+			
+			
+			
+
+		
+			
+			GL11.glPushMatrix();
+			
+			
 			for(Instance instance : instances){
 
 				instance.draw();
 			}
 			
-			
-			GL11.glTranslatef(-xx, -yy, -zz);
-			
+			GL11.glPopMatrix();
 			
 			
 			
 			
 			
 			
-			System.out.println("X: "+xx+" Y:"+ yy +" Z:"+zz+"YORIENT: "+yorient+" ANGLE:"+yorient);
+			
+			
 			
 			
 
@@ -115,26 +164,8 @@ public class Main {
 			instance.tick();
 		}
 		
-		if(Keyboard.isKeyDown(Keyboard.KEY_W)){
-			
-			zz += (float)Math.cos(Math.toRadians(yorient));
-			xx += (float)Math.sin(Math.toRadians(yorient));
-		}
 		
-		if(Keyboard.isKeyDown(Keyboard.KEY_H)){
-			yorient += 6;
-			
-		}
-		else if(Keyboard.isKeyDown(Keyboard.KEY_J)){
-			yorient -= 6;
-			
-		}
 		
-		float mx = Mouse.getX();
-		float my = HEIGHT - Mouse.getY() +1;
-		
-		float centerx = WIDTH/2;
-		float centery = HEIGHT/2;
 		
 		
 	}
@@ -143,14 +174,26 @@ public class Main {
 	public static void main(String[] args){
 		new Main();
 	}
-
-	public static void loadTextures(){
-		try {
-			dirttext = TextureLoader.getTexture("png", ResourceLoader.getResourceAsStream("res/dirty.png"));
-			grasstext = TextureLoader.getTexture("png", ResourceLoader.getResourceAsStream("res/grass.png"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	
+	public void loadTextures(){
+		
 	}
+	
+	public Block getBlockAt(float x, float y, float z){
+		for(int i = 0; i < instances.size(); i++){
+			Instance instance = instances.get(i);
+			if(
+					instance.x >= -x && instance.x <= -x+Block.getSize() &&
+					instance.y >= -y && instance.y <= -y+Block.getSize() &&
+					instance.z >= -z && instance.z <= -z+Block.getSize()
+					
+			){
+				return (Block) instance;
+			}
+		}
+		
+		return new AirBlock(x,y,z);
+	}
+
+	
 }
