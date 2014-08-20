@@ -1,10 +1,13 @@
 package nu.sebka.main;
 
+import static org.lwjgl.opengl.GL11.GL_DIFFUSE;
+import static org.lwjgl.opengl.GL11.GL_FRONT;
 import static org.lwjgl.opengl.GL11.GL_LIGHT0;
 import static org.lwjgl.opengl.GL11.GL_LIGHTING;
 import static org.lwjgl.opengl.GL11.GL_POSITION;
 import static org.lwjgl.opengl.GL11.glEnable;
 import static org.lwjgl.opengl.GL11.glLightf;
+import static org.lwjgl.opengl.GL11.glMaterialf;
 
 import java.io.IOException;
 import java.util.Random;
@@ -52,6 +55,8 @@ public class Block extends Instance {
 		
 	
 		GL11.glColor3f(   1.0f,  1.0f,  1.0f );
+		GL11.glNormal3f(-1,0,0);
+		
 		GL11.glTexCoord2f(1,0);	GL11.glVertex3f(  x+size,y+ -size,z+ size );
 		GL11.glTexCoord2f(0,0);	GL11.glVertex3f(  x+size, y+ size,z+ size );
 		GL11.glTexCoord2f(0,1);	GL11.glVertex3f( x+-size, y+ size,z+ size );
@@ -66,6 +71,8 @@ public class Block extends Instance {
 		// White side - FRONT
 		GL11.glBegin(GL11.GL_POLYGON);
 		GL11.glColor3f(   1.0f,  1.0f,  1.0f );
+		GL11.glNormal3f(1,0,0);
+		
 		GL11.glTexCoord2f(1,0);	GL11.glVertex3f(  x+size,y+ -size,z- size );
 		GL11.glTexCoord2f(0,0);	GL11.glVertex3f(  x+size, y+ size,z- size );
 		GL11.glTexCoord2f(0,1);	GL11.glVertex3f( x+-size, y+ size,z- size );
@@ -80,6 +87,8 @@ public class Block extends Instance {
 		// Purple side - RIGHT
 		GL11.glBegin(GL11.GL_POLYGON);
 		GL11.glColor3f(   1.0f,  1.0f,  1.0f );
+		GL11.glNormal3f(0,-1,0);
+		
 		GL11.glTexCoord2f(1,0);	GL11.glVertex3f(x+ size,y+ -size,z+ -size );
 		GL11.glTexCoord2f(0,0);	GL11.glVertex3f( x+size, y+ size,z+ -size );
 		GL11.glTexCoord2f(0,1);	GL11.glVertex3f( x+size, y+ size,z+  size );
@@ -95,6 +104,8 @@ public class Block extends Instance {
 		// Green side - LEFT
 		GL11.glBegin(GL11.GL_POLYGON);
 		GL11.glColor3f(   1.0f,  1.0f,  1.0f );
+		GL11.glNormal3f(0,0,-1);
+		
 		GL11.glTexCoord2f(1,0);	GL11.glVertex3f(x+ -size,y+ -size, z+ size );
 		GL11.glTexCoord2f(0,0);	GL11.glVertex3f( x+-size, y+ size, z+ size );
 		GL11.glTexCoord2f(0,1);	GL11.glVertex3f(x+ -size, y+ size, z+-size );
@@ -109,6 +120,8 @@ public class Block extends Instance {
 		// Blue side - TOP
 		GL11.glBegin(GL11.GL_POLYGON);
 		GL11.glColor3f(   1.0f,  1.0f,  1.0f );
+		GL11.glNormal3f(0,0,1);
+		
 		GL11.glTexCoord2f(1,0);	GL11.glVertex3f( x+ size, y+ size, z+ size );
 		GL11.glTexCoord2f(0,0);	GL11.glVertex3f( x+ size,  y+size,z+ -size );
 		GL11.glTexCoord2f(0,1);	GL11.glVertex3f(x+ -size,  y+size,z+ -size );
@@ -121,16 +134,16 @@ public class Block extends Instance {
 		
 		// Red side - BOTTOM
 		GL11.glBegin(GL11.GL_POLYGON);
+	
 		GL11.glColor3f(   1.0f,  1.0f,  1.0f );
+		GL11.glNormal3f(0,1,0);
+		
 		GL11.glTexCoord2f(1,0);	GL11.glVertex3f( x+ size, y+-size,z+ -size );
 		GL11.glTexCoord2f(0,0);	GL11.glVertex3f( x+ size, y+-size,z+  size );
 		GL11.glTexCoord2f(0,1);	GL11.glVertex3f( x+-size, y+-size,z+  size );
 		GL11.glTexCoord2f(1,1);	GL11.glVertex3f( x+-size, y+-size, z+-size );
 		GL11.glEnd();
 		
-		
-		
-		GL11.glEnd();
 		
 		
 		

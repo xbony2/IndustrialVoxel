@@ -1,8 +1,27 @@
 package nu.sebka.main;
 
-import static org.lwjgl.opengl.GL11.*;
-import static org.lwjgl.util.glu.GLU.*;
+import static org.lwjgl.opengl.GL11.GL_DEPTH_TEST;
+import static org.lwjgl.opengl.GL11.GL_MODELVIEW;
+import static org.lwjgl.opengl.GL11.GL_NEAREST;
+import static org.lwjgl.opengl.GL11.GL_PROJECTION;
+import static org.lwjgl.opengl.GL11.GL_TEXTURE_2D;
+import static org.lwjgl.opengl.GL11.GL_TEXTURE_MAG_FILTER;
+import static org.lwjgl.opengl.GL11.GL_TEXTURE_MIN_FILTER;
+import static org.lwjgl.opengl.GL11.glEnable;
+import static org.lwjgl.opengl.GL11.glLoadIdentity;
+import static org.lwjgl.opengl.GL11.glMatrixMode;
+import static org.lwjgl.opengl.GL11.glRotatef;
+import static org.lwjgl.opengl.GL11.glTexParameteri;
+import static org.lwjgl.opengl.GL11.glTranslatef;
+import static org.lwjgl.util.glu.GLU.gluPerspective;
 
+import java.util.Random;
+
+import nu.sebka.main.blocks.AirBlock;
+
+import org.lwjgl.LWJGLException;
+import org.lwjgl.input.Keyboard;
+import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
 public class Camera 
@@ -37,6 +56,8 @@ public class Camera
 
 	private void initProjection()
 	{
+		
+		
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
 		gluPerspective(fov,aspect,near,far);
@@ -46,38 +67,112 @@ public class Camera
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
 		
-		glEnable(GL_LIGHTING);
-		glEnable(GL_LIGHT0);
+		
 		
 		// Create light components
 		
-		float ambientLight[] = { 0.2f, 0.2f, 0.2f, 1.0f };
+		float ambientLight[] = { 0, 2, 2, 0 };
 		float diffuseLight[] = { 0.8f, 0.8f, 0.8f, 1.0f };
 		float specularLight[] = { 0.5f, 0.5f, 0.5f, 1.0f };
 		float position[] = { -1.5f, 1.0f, -4.0f, 1.0f };
-	
 		
 		
-		// Assign created components to GL_LIGHT0
-		glLightf(GL_LIGHT0, GL_AMBIENT, ambientLight[0]);
-		glLightf(GL_LIGHT0, GL_DIFFUSE, diffuseLight[0]);
-		glLightf(GL_LIGHT0, GL_SPECULAR, specularLight[0]);
-		glLightf(GL_LIGHT0, GL_POSITION, position[0]);
-		  
-		   
+		///GLfloat lightpos[] = {.5, 1., 1., 0.};
+		
+		
+		
+		
+
+		   //glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
+		   //glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess);
+			
 		   
 
 		   
 	
 	}
 
+	
+	
 	public void useView()
 	{
+		
+		
+		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
+		
+		
 		glRotatef(rx,1,0,0);
 		glRotatef(ry,0,1,0);
 		glRotatef(rz,0,0,1);
 		glTranslatef(x,y,z);
 		
+		
+		
+		
+	}
+	
+	
+	public void tick(){
+		boolean falling = false;
+		boolean canmove = true;
+		float fallspeed = 0.01f;
+
+
+		if(Main.getCurrentWorld().getBlockAt(getX(),getY()+Block.getSize()*2,getZ()) instanceof AirBlock){
+			falling = true;
+		}
+
+
+
+
+		
+		if(Keyboard.isKeyDown(Keyboard.KEY_W) && canmove){
+			move(1, 0.01f);
+			try {
+				Mouse.setNativeCursor(null);
+			} catch (LWJGLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		if(Keyboard.isKeyDown(Keyboard.KEY_S) && canmove){
+			move(-1, 0.01f);
+		}
+
+		if(Keyboard.isKeyDown(Keyboard.KEY_A) && canmove){
+			move(0, 0.01f);
+		}
+
+		if(Keyboard.isKeyDown(Keyboard.KEY_D) && canmove){
+			move(2, 0.01f);
+		}
+
+		if(Keyboard.isKeyDown(Keyboard.KEY_SPACE)){
+			setY(getY()-Block.getSize()/2);
+			System.out.println("HELLO");
+		}
+
+		if(falling){
+			fallspeed += 0.00016f;
+			setY(getY()+fallspeed);
+		}else{
+			fallspeed = 0.01f;
+		}
+
+
+		if(Keyboard.isKeyDown(Keyboard.KEY_LEFT)){
+			setRY(getRY()-3);
+		}
+
+		if(Keyboard.isKeyDown(Keyboard.KEY_RIGHT)){
+			setRY(getRY()+3);
+		}
+
+
+
+		setRY(getRY()+Mouse.getDX());
+		setRX(getRX()-Mouse.getDY());
 		
 	}
 
