@@ -1,5 +1,11 @@
 package nu.sebka.main;
 
+import static org.lwjgl.opengl.GL11.GL_LIGHT0;
+import static org.lwjgl.opengl.GL11.GL_LIGHTING;
+import static org.lwjgl.opengl.GL11.GL_POSITION;
+import static org.lwjgl.opengl.GL11.glEnable;
+import static org.lwjgl.opengl.GL11.glLightf;
+
 import java.io.IOException;
 import java.util.Random;
 
@@ -38,8 +44,13 @@ public class Block extends Instance {
 		
 		
 		
+		
+		
+		 
 		// White side - BACK
 		GL11.glBegin(GL11.GL_POLYGON);
+		
+	
 		GL11.glColor3f(   1.0f,  1.0f,  1.0f );
 		GL11.glTexCoord2f(1,0);	GL11.glVertex3f(  x+size,y+ -size,z+ size );
 		GL11.glTexCoord2f(0,0);	GL11.glVertex3f(  x+size, y+ size,z+ size );

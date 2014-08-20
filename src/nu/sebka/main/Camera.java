@@ -45,6 +45,30 @@ public class Camera
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
+		
+		glEnable(GL_LIGHTING);
+		glEnable(GL_LIGHT0);
+		
+		// Create light components
+		
+		float ambientLight[] = { 0.2f, 0.2f, 0.2f, 1.0f };
+		float diffuseLight[] = { 0.8f, 0.8f, 0.8f, 1.0f };
+		float specularLight[] = { 0.5f, 0.5f, 0.5f, 1.0f };
+		float position[] = { -1.5f, 1.0f, -4.0f, 1.0f };
+	
+		
+		
+		// Assign created components to GL_LIGHT0
+		glLightf(GL_LIGHT0, GL_AMBIENT, ambientLight[0]);
+		glLightf(GL_LIGHT0, GL_DIFFUSE, diffuseLight[0]);
+		glLightf(GL_LIGHT0, GL_SPECULAR, specularLight[0]);
+		glLightf(GL_LIGHT0, GL_POSITION, position[0]);
+		  
+		   
+		   
+
+		   
+	
 	}
 
 	public void useView()
