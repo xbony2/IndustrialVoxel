@@ -11,8 +11,8 @@ public class GrassBlock extends Block {
 		textures[1] = TextureBank.DIRT_TEXTURE;
 		textures[2] = TextureBank.DIRT_TEXTURE;
 		textures[3] = TextureBank.DIRT_TEXTURE;
-		textures[4] = TextureBank.GRASS_TEXTURE;
-		textures[5] = TextureBank.DIRT_TEXTURE;
+		textures[4] = TextureBank.DIRT_TEXTURE;
+		textures[5] = TextureBank.GRASS_TEXTURE;
 	}
 	
 	

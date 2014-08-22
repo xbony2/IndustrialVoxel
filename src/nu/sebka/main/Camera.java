@@ -63,28 +63,8 @@ public class Camera
 		gluPerspective(fov,aspect,near,far);
 		glMatrixMode(GL_MODELVIEW);
 		glEnable(GL_DEPTH_TEST);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-		GL11.glEnable(GL11.GL_TEXTURE_2D);
 		
 		
-		
-		// Create light components
-		
-		float ambientLight[] = { 0, 2, 2, 0 };
-		float diffuseLight[] = { 0.8f, 0.8f, 0.8f, 1.0f };
-		float specularLight[] = { 0.5f, 0.5f, 0.5f, 1.0f };
-		float position[] = { -1.5f, 1.0f, -4.0f, 1.0f };
-		
-		
-		///GLfloat lightpos[] = {.5, 1., 1., 0.};
-		
-		
-		
-		
-
-		   //glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
-		   //glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess);
 			
 		   
 
@@ -104,7 +84,7 @@ public class Camera
 		glRotatef(rx,1,0,0);
 		glRotatef(ry,0,1,0);
 		glRotatef(rz,0,0,1);
-		glTranslatef(x,y,z);
+		glTranslatef(-x,-y,-z);
 		
 		
 		
@@ -117,7 +97,7 @@ public class Camera
 		boolean canmove = true;
 		float fallspeed = 0.01f;
 
-
+		System.out.println(Main.getCurrentWorld().getBlockAt(x, y+Block.getSize()*2, z));
 		if(Main.getCurrentWorld().getBlockAt(getX(),getY()+Block.getSize()*2,getZ()) instanceof AirBlock){
 			falling = true;
 		}
@@ -141,16 +121,16 @@ public class Camera
 		}
 
 		if(Keyboard.isKeyDown(Keyboard.KEY_A) && canmove){
-			move(0, 0.01f);
+			move(2, 0.01f);
 		}
 
 		if(Keyboard.isKeyDown(Keyboard.KEY_D) && canmove){
-			move(2, 0.01f);
+			move(0, 0.01f);
 		}
 
 		if(Keyboard.isKeyDown(Keyboard.KEY_SPACE)){
 			setY(getY()-Block.getSize()/2);
-			System.out.println("HELLO");
+			
 		}
 
 		if(falling){
@@ -171,7 +151,7 @@ public class Camera
 
 
 
-		setRY(getRY()+Mouse.getDX());
+		setRY(getRY()-Mouse.getDX());
 		setRX(getRX()-Mouse.getDY());
 		
 	}

@@ -15,6 +15,8 @@ public class TextureBank {
 	public static Texture DIAMOND_ORE_TEXTURE = loadTexture("Png","res/diamond_ore.png");
 	public static Texture LOG_TOP = loadTexture("png","res/logtop.png");
 	public static Texture LOG_SIDE = loadTexture("png","res/logside.png");
+	public static Texture SHADOW = loadTexture("png","res/shadow.png");
+	
 
 			public static Texture loadTexture(String format, String path){
 		try {
