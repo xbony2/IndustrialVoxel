@@ -28,50 +28,6 @@ public class World {
 
 			}
 		}
-		Random random = new Random();
-		for(int i = 0; i < 16; i+=1){
-			for(int ii = 0; ii < 16; ii+=1){
-
-				if(random.nextInt(10) == 0){
-					instances.add(new CobbleBlock(i*Block.getSize(),-Block.getSize(),-ii*Block.getSize()));
-				}
-
-			}
-		}
-
-		for(int i = 0; i < 16; i+=1){
-			for(int ii = 0; ii < 16; ii+=1){
-
-				if(random.nextInt(10) == 0){
-					instances.add(new CobbleBlock(i*Block.getSize(),-Block.getSize()*2,-ii*Block.getSize()));
-				}
-
-			}
-		}
-
-		for(int i = 0; i < 16; i+=1){
-			for(int ii = 0; ii < 16; ii+=1){
-
-				if(random.nextInt(10) == 0){
-					instances.add(new LogBlock(i*Block.getSize(),-Block.getSize()*3,-ii*Block.getSize()));
-				}
-
-			}
-		}
-
-		for(int i = 0; i < 16; i+=1){
-			for(int ii = 0; ii < 16; ii+=1){
-
-				if(random.nextInt(10) == 0){
-					instances.add(new LogBlock(i*Block.getSize(),-Block.getSize()*4,-ii*Block.getSize()));
-				}
-
-			}
-		}
-
-		for(int i = 0; i < 4; i++){
-			instances.add(new LogBlock(Block.getSize()*4,-Block.getSize()+i*Block.getSize(),-Block.getSize()*4));
-		}
 
 
 
@@ -110,7 +66,7 @@ public class World {
 		}
 		GL11.glPopMatrix();
 
-
+		
 
 	}
 
@@ -147,4 +103,5 @@ public class World {
 
 		return new AirBlock((float)x,(float)y,(float)z);
 	}
+	
 }

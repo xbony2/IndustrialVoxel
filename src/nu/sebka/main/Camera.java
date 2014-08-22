@@ -2,22 +2,18 @@ package nu.sebka.main;
 
 import static org.lwjgl.opengl.GL11.GL_DEPTH_TEST;
 import static org.lwjgl.opengl.GL11.GL_MODELVIEW;
-import static org.lwjgl.opengl.GL11.GL_NEAREST;
 import static org.lwjgl.opengl.GL11.GL_PROJECTION;
-import static org.lwjgl.opengl.GL11.GL_TEXTURE_2D;
-import static org.lwjgl.opengl.GL11.GL_TEXTURE_MAG_FILTER;
-import static org.lwjgl.opengl.GL11.GL_TEXTURE_MIN_FILTER;
 import static org.lwjgl.opengl.GL11.glEnable;
 import static org.lwjgl.opengl.GL11.glLoadIdentity;
 import static org.lwjgl.opengl.GL11.glMatrixMode;
 import static org.lwjgl.opengl.GL11.glRotatef;
-import static org.lwjgl.opengl.GL11.glTexParameteri;
 import static org.lwjgl.opengl.GL11.glTranslatef;
 import static org.lwjgl.util.glu.GLU.gluPerspective;
 
 import java.util.Random;
 
 import nu.sebka.main.blocks.AirBlock;
+import nu.sebka.main.blocks.GrassBlock;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Keyboard;
@@ -56,56 +52,79 @@ public class Camera
 
 	private void initProjection()
 	{
-		
-		
+
+
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
 		gluPerspective(fov,aspect,near,far);
 		glMatrixMode(GL_MODELVIEW);
 		glEnable(GL_DEPTH_TEST);
-		
-		
-			
-		   
 
-		   
-	
+
+
+		//...
+		// enable face culling
+
+
+
+
+
 	}
 
-	
-	
+
+
 	public void useView()
 	{
-		
-		
+
+
 		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
-		
-		
+
+
 		glRotatef(rx,1,0,0);
 		glRotatef(ry,0,1,0);
 		glRotatef(rz,0,0,1);
 		glTranslatef(-x,-y,-z);
-		
-		
-		
-		
+
+
+
+
+
 	}
-	
-	
+
+
 	public void tick(){
 		boolean falling = false;
 		boolean canmove = true;
 		float fallspeed = 0.01f;
 
 		System.out.println(Main.getCurrentWorld().getBlockAt(x, y+Block.getSize()*2, z));
+
 		if(Main.getCurrentWorld().getBlockAt(getX(),getY()+Block.getSize()*2,getZ()) instanceof AirBlock){
 			falling = true;
 		}
 
 
 
+		if(Keyboard.isKeyDown(Keyboard.KEY_C)){
+			Random random = new Random();
+			GL11.glCullFace(random.nextInt(5));
+			GL11.glEnable(GL11.GL_CULL_FACE);
+		}
 
-		
+
+		while(Keyboard.next()){
+			if(Keyboard.isKeyDown(Keyboard.KEY_RETURN) ){
+				if(Keyboard.getEventKeyState()){
+					System.out.println("BLOCK PLACE");
+					Block block = Main.getCurrentWorld().getBlockAt(x, y+Block.getSize()*2, z);
+					Block topblock = Main.getCurrentWorld().getBlockAtPrecise(block.x,block.y-Block.getSize()*2,block.z);
+					if(topblock instanceof AirBlock){
+						Main.getCurrentWorld().instances.add(new GrassBlock(block.x,block.y-Block.getSize(),block.z));
+					}
+				}
+			}
+		}
+
 		if(Keyboard.isKeyDown(Keyboard.KEY_W) && canmove){
 			move(1, 0.01f);
 			try {
@@ -130,7 +149,7 @@ public class Camera
 
 		if(Keyboard.isKeyDown(Keyboard.KEY_SPACE)){
 			setY(getY()-Block.getSize()/2);
-			
+
 		}
 
 		if(falling){
@@ -153,7 +172,7 @@ public class Camera
 
 		setRY(getRY()-Mouse.getDX());
 		setRX(getRX()-Mouse.getDY());
-		
+
 	}
 
 	public float getX()
@@ -215,7 +234,7 @@ public class Camera
 	{
 		this.rz = rz;
 	}
-	
+
 	public void move(float dir, float amt ){
 		z += amt * Math.sin(Math.toRadians(ry + 90 *dir));
 		x += amt * Math.cos(Math.toRadians(ry + 90 *dir));
