@@ -1,10 +1,12 @@
 package nu.sebka.main;
 
-import nu.sebka.main.blocks.AirBlock;
-import nu.sebka.main.blocks.GrassBlock;
-import org.lwjgl.opengl.GL11;
-
 import java.util.ArrayList;
+
+import nu.sebka.main.blocks.AirBlock;
+import nu.sebka.main.blocks.CobbleBlock;
+import nu.sebka.main.blocks.GrassBlock;
+
+import org.lwjgl.opengl.GL11;
 
 public class World {
 
@@ -21,6 +23,8 @@ public class World {
 
             }
         }
+        
+        instances.add(new CobbleBlock(5*Block.getSize(),-Block.getSize()*2,-5*Block.getSize()));
     }
 
     public void tick() {
