@@ -9,19 +9,16 @@ import org.newdawn.slick.util.ResourceLoader;
 
 public class TextureBank {
 
-    public static Texture GRASS_TEXTURE = loadTexture("png", "res/grass.png");
-    public static Texture DIRT_TEXTURE = loadTexture("png", "res/dirt.png");
-    public static Texture COBBLE_TEXTURE = loadTexture("png", "res/cobble.png");
-    public static Texture DIAMOND_ORE_TEXTURE = loadTexture("Png", "res/diamond_ore.png");
-    public static Texture LOG_TOP = loadTexture("png", "res/logtop.png");
-    public static Texture LOG_SIDE = loadTexture("png", "res/logside.png");
-    public static Texture SHADOW = loadTexture("png", "res/shadow.png");
+    public static Texture GRASS_TEXTURE = loadTexture("grass");
+    public static Texture DIRT_TEXTURE = loadTexture("dirt");
+    public static Texture COBBLE_TEXTURE = loadTexture("cobble");
+    public static Texture LOG_TOP = loadTexture("logtop");
+    public static Texture LOG_SIDE = loadTexture("logside");
+    public static Texture SHADOW = loadTexture("shadow");
 
-
-    public static Texture loadTexture(String format, String path) {
+    public static Texture loadTexture(String texturename) {
         try {
-
-            Texture texture = TextureLoader.getTexture(format, ResourceLoader.getResourceAsStream(path));
+            Texture texture = TextureLoader.getTexture("png", ResourceLoader.getResourceAsStream("res/" + texturename + ".png"));
 
             GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST);
 
@@ -30,7 +27,6 @@ public class TextureBank {
 
 
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         return null;
