@@ -2,12 +2,8 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
-	<classpathentry kind="lib" path="C:/Users/Sebastian/Downloads/lwjgl-2.9.1/jar/lwjgl.jar">
-		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="E:/Workspace/MinecraftClone/lib/natives-win"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Sebastian/Downloads/lwjgl-2.9.1/jar/lwjgl_util.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Sebastian/Desktop/slick-util.jar"/>
+	<classpathentry kind="lib" path="lib/jars/lwjgl_util.jar"/>
+	<classpathentry kind="lib" path="lib/jars/lwjgl.jar"/>
+	<classpathentry kind="lib" path="lib/jars/slick-util.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
