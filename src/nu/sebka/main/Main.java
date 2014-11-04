@@ -29,7 +29,6 @@ public class Main {
             e.printStackTrace();
         }
 
-
         while (!Display.isCloseRequested()) {
 
 
