@@ -1,6 +1,7 @@
 package nu.sebka.main;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import org.lwjgl.LWJGLException;
@@ -18,7 +19,7 @@ public class Main {
     public static int worldIndex = 0;
 
 
-    public Main() {
+    public Main(){
         try {
             Display.setDisplayMode(new DisplayMode(WIDTH, HEIGHT));
             Display.setTitle("IndustrialCraftGame");
@@ -55,7 +56,7 @@ public class Main {
     }
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
         String operatingSystem = System.getProperty("os.name");
         File home = new File("./lib/natives");
         for (String name : home.list()) {

@@ -20,10 +20,20 @@ public class Block extends Instance {
     public Texture[] textures = new Texture[6];
     public Texture[] originalTextures = new Texture[6];
     Random random = new Random();
+    private static int id;
 
-    public Block(float x, float y, float z) {
+    public static int getId() {
+		return id;
+	}
+
+	public static void setId(int id) {
+		Block.id = id;
+	}
+
+	public Block(int id, float x, float y, float z) {
         super(x, y, z);
         originalTextures = textures;
+        this.id = id;
     }
     
     public static Texture loadTexture(String texturename) {

@@ -1,6 +1,12 @@
 package nu.sebka.main;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import nu.sebka.main.blocks.AirBlock;
 import nu.sebka.main.blocks.CobbleBlock;
@@ -14,14 +20,30 @@ public class World {
     public ArrayList<Instance> instances = new ArrayList<Instance>();
     public Camera cam = new Camera(70, (float) Main.WIDTH / (float) Main.HEIGHT, 0.03f, 1000);
 
-    public World() {
-
+    public World(){
+    	File worldFile = new File("world/world.txt");
+    	Scanner diskScanner = null;
+    	try {
+			diskScanner = new Scanner(worldFile);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+    	
+    	while(diskScanner.hasNext()){
+    		String s = diskScanner.next();
+    		String[] parts = s.split(" ");
+    		int id = Integer.parseInt(parts[0]);
+    		float x = Float.parseFloat(parts[1]);
+    		float y = Float.parseFloat(parts[2]);
+    		float z = Float.parseFloat(parts[3]);
+    		instances.add(new Block(id, x, y, z));
+    	}
+    	
         cam.setY(-Block.getSize() * 2);
 
         for (int i = 0; i < 16; i += 1) {
             for (int ii = 0; ii < 16; ii += 1) {
                 instances.add(new GrassBlock(i * Block.getSize(), 0, -ii * Block.getSize()));
-
             }
         }
         

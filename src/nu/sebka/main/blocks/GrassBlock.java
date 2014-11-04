@@ -10,7 +10,7 @@ public class GrassBlock extends Block {
 	public static Texture GRASS_TEXTURE = loadTexture("grass");
 	
     public GrassBlock(float x, float y, float z) {
-        super(x, y, z);
+        super(IDReference.GRASS_ID, x, y, z);
         textures[0] = DIRT_TEXTURE;
         textures[1] = DIRT_TEXTURE;
         textures[2] = DIRT_TEXTURE;

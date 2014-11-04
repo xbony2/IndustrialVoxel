@@ -5,8 +5,8 @@ import nu.sebka.main.Block;
 public class AirBlock extends Block {
 
     public AirBlock(float x, float y, float z) {
-        super(x, y, z);
-        // TODO Auto-generated constructor stub
+        super(IDReference.AIR_ID, x, y, z);
+        
     }
 
 }

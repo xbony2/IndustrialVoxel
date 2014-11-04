@@ -9,7 +9,7 @@ public class LogBlock extends Block {
 	public static Texture LOG_SIDE = loadTexture("logside");
 
     public LogBlock(float x, float y, float z) {
-        super(x, y, z);
+        super(IDReference.WOOD_ID, x, y, z);
         textures[0] = LOG_SIDE;
         textures[1] = LOG_SIDE;
         textures[2] = LOG_SIDE;
