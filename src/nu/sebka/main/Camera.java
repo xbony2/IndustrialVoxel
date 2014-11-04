@@ -85,7 +85,7 @@ public class Camera {
         boolean canmove = true;
         float fallspeed = 0.01f;
 
-        System.out.println(Main.getCurrentWorld().getBlockAt(x, y + Block.getSize() * 2, z));
+        //System.out.println(Main.getCurrentWorld().getBlockAt(x, y + Block.getSize() * 2, z));
 
         if (Main.getCurrentWorld().getBlockAt(getX(), getY() + Block.getSize() * 2, getZ()) instanceof AirBlock) {
             falling = true;

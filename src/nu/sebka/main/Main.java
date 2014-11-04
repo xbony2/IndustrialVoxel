@@ -21,7 +21,7 @@ public class Main {
     public Main() {
         try {
             Display.setDisplayMode(new DisplayMode(WIDTH, HEIGHT));
-            Display.setTitle("Minecraft");
+            Display.setTitle("IndustrialCraftGame");
             Display.create();
             worlds.add(new World());
         } catch (LWJGLException e) {
@@ -31,13 +31,11 @@ public class Main {
 
         while (!Display.isCloseRequested()) {
 
-
             GL11.glPushMatrix();
 
             update();
 
             GL11.glPopMatrix();
-
 
             Display.update();
             Display.sync(60);

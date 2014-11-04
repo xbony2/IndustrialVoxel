@@ -1,5 +1,6 @@
 package nu.sebka.main;
 
+import java.io.IOException;
 import java.util.Random;
 
 import nu.sebka.main.blocks.AirBlock;
@@ -7,10 +8,14 @@ import nu.sebka.main.blocks.CobbleBlock;
 
 import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.opengl.Texture;
+import org.newdawn.slick.opengl.TextureLoader;
+import org.newdawn.slick.util.ResourceLoader;
 
 
 public class Block extends Instance {
 
+    public static Texture SHADOW = loadTexture("shadow");
+	
     private static float size = 0.04f;
     public Texture[] textures = new Texture[6];
     public Texture[] originalTextures = new Texture[6];
@@ -19,8 +24,23 @@ public class Block extends Instance {
     public Block(float x, float y, float z) {
         super(x, y, z);
         originalTextures = textures;
-
     }
+    
+    public static Texture loadTexture(String texturename) {
+        try {
+            Texture texture = TextureLoader.getTexture("png", ResourceLoader.getResourceAsStream("res/" + texturename + ".png"));
+
+            GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST);
+
+            GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
+            return texture;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
     @Override
     public void tick() {

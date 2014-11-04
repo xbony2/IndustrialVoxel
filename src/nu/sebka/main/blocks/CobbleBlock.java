@@ -1,18 +1,21 @@
 package nu.sebka.main.blocks;
 
+import org.newdawn.slick.opengl.Texture;
+
 import nu.sebka.main.Block;
-import nu.sebka.main.TextureBank;
 
 public class CobbleBlock extends Block {
 
+	public static Texture COBBLE_TEXTURE = loadTexture("cobble");
+	
     public CobbleBlock(float x, float y, float z) {
         super(x, y, z);
-        textures[0] = TextureBank.COBBLE_TEXTURE;
-        textures[1] = TextureBank.COBBLE_TEXTURE;
-        textures[2] = TextureBank.COBBLE_TEXTURE;
-        textures[3] = TextureBank.COBBLE_TEXTURE;
-        textures[4] = TextureBank.COBBLE_TEXTURE;
-        textures[5] = TextureBank.COBBLE_TEXTURE;
+        textures[0] = COBBLE_TEXTURE;
+        textures[1] = COBBLE_TEXTURE;
+        textures[2] = COBBLE_TEXTURE;
+        textures[3] = COBBLE_TEXTURE;
+        textures[4] = COBBLE_TEXTURE;
+        textures[5] = COBBLE_TEXTURE;
     }
 
 }
