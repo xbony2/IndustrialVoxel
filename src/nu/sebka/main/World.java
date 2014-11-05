@@ -31,7 +31,7 @@ public class World {
     	
     	while(diskScanner.hasNext()){
     		String s = diskScanner.next();
-    		String[] parts = s.split(" ");
+    		String[] parts = s.split(" ", 4);
     		int id = Integer.parseInt(parts[0]);
     		float x = Float.parseFloat(parts[1]);
     		float y = Float.parseFloat(parts[2]);
@@ -41,14 +41,14 @@ public class World {
     	
         cam.setY(-Block.getSize() * 2);
 
-        for (int i = 0; i < 16; i += 1) {
+        /*for (int i = 0; i < 16; i += 1) {
             for (int ii = 0; ii < 16; ii += 1) {
                 instances.add(new GrassBlock(i * Block.getSize(), 0, -ii * Block.getSize()));
             }
         }
         
         instances.add(new CobbleBlock(5*Block.getSize(),-Block.getSize()*2,-5*Block.getSize()));
-        instances.add(new LogBlock(5*Block.getSize(),-Block.getSize()*3,-5*Block.getSize()));
+        instances.add(new LogBlock(5*Block.getSize(),-Block.getSize()*3,-5*Block.getSize()));*/
     }
 
     public void tick() {

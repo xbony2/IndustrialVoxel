@@ -59,9 +59,6 @@ public class Main {
     public static void main(String[] args){
         String operatingSystem = System.getProperty("os.name");
         File home = new File("./lib/natives");
-        for (String name : home.list()) {
-            System.out.println(name);
-        }
         if (operatingSystem.contains("Windows")) {
             System.setProperty("org.lwjgl.librarypath", new File(home, "windows").getAbsolutePath());
         } else if (operatingSystem.contains("Mac")) {
