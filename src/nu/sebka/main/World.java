@@ -53,12 +53,14 @@ public class World {
     }
     
     public void addBlockToWorld(int id, float x, float y, float z){
-    	switch(id){
+    	Block block = (Block) Block.blockIds.get(id);
+    	instances.add(block); //FIXME
+    	/*switch(id){
     	case IDReference.COBBLE_ID: instances.add(new CobbleBlock(x, y, z)); break;
     	case IDReference.GRASS_ID: instances.add(new GrassBlock(x, y, z)); break;
     	case IDReference.WOOD_ID: instances.add(new LogBlock(x, y, z)); break;
     	default: instances.add(new AirBlock(x, y, z));
-    	}
+    	}*/
     }
 
     public void tick() {

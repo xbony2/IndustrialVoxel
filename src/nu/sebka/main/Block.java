@@ -1,17 +1,15 @@
-
 package nu.sebka.main;
 
 import java.io.IOException;
-import java.util.Random;
 
 import nu.sebka.main.blocks.AirBlock;
-import nu.sebka.main.blocks.CobbleBlock;
 
+import org.apache.commons.collections.BidiMap;
+import org.apache.commons.collections.bidimap.DualHashBidiMap;
 import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.opengl.TextureLoader;
 import org.newdawn.slick.util.ResourceLoader;
-
 
 public class Block extends Instance {
 
@@ -20,21 +18,12 @@ public class Block extends Instance {
     private static float size = 0.04f;
     public Texture[] textures = new Texture[6];
     public Texture[] originalTextures = new Texture[6];
-    Random random = new Random();
-    private static int id;
-
-    public static int getId() {
-		return id;
-	}
-
-	public static void setId(int id) {
-		Block.id = id;
-	}
+    public static BidiMap blockIds = new DualHashBidiMap();
 
 	public Block(int id, float x, float y, float z) {
         super(x, y, z);
         originalTextures = textures;
-        this.id = id;
+    	blockIds.put(this, id);
     }
     
     public static Texture loadTexture(String texturename) {
