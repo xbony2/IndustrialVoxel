@@ -11,6 +11,7 @@ import java.util.Scanner;
 import nu.sebka.main.blocks.AirBlock;
 import nu.sebka.main.blocks.CobbleBlock;
 import nu.sebka.main.blocks.GrassBlock;
+import nu.sebka.main.blocks.IDReference;
 import nu.sebka.main.blocks.LogBlock;
 
 import org.lwjgl.opengl.GL11;
@@ -30,13 +31,13 @@ public class World {
 		}
     	
     	while(diskScanner.hasNext()){
-    		String s = diskScanner.next();
-    		String[] parts = s.split(" ", 4);
+    		String s = diskScanner.nextLine();
+    		String[] parts = s.split(" ");
     		int id = Integer.parseInt(parts[0]);
     		float x = Float.parseFloat(parts[1]);
     		float y = Float.parseFloat(parts[2]);
     		float z = Float.parseFloat(parts[3]);
-    		instances.add(new Block(id, x, y, z));
+    		addBlockToWorld(id, x, y, z);
     	}
     	
         cam.setY(-Block.getSize() * 2);
@@ -49,6 +50,15 @@ public class World {
         
         instances.add(new CobbleBlock(5*Block.getSize(),-Block.getSize()*2,-5*Block.getSize()));
         instances.add(new LogBlock(5*Block.getSize(),-Block.getSize()*3,-5*Block.getSize()));*/
+    }
+    
+    public void addBlockToWorld(int id, float x, float y, float z){
+    	switch(id){
+    	case IDReference.COBBLE_ID: instances.add(new CobbleBlock(x, y, z)); break;
+    	case IDReference.GRASS_ID: instances.add(new GrassBlock(x, y, z)); break;
+    	case IDReference.WOOD_ID: instances.add(new LogBlock(x, y, z)); break;
+    	default: instances.add(new AirBlock(x, y, z));
+    	}
     }
 
     public void tick() {
