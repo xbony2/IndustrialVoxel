@@ -22,7 +22,7 @@ public class Main {
     public Main(){
         try {
             Display.setDisplayMode(new DisplayMode(WIDTH, HEIGHT));
-            Display.setTitle("IndustrialCraftGame");
+            Display.setTitle("IndustrialVoxel");
             Display.create();
             worlds.add(new World());
         } catch (LWJGLException e) {
