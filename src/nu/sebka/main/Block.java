@@ -64,13 +64,13 @@ public class Block extends Instance {
         GL11.glNormal3f(-1, 0, 0);
 
         GL11.glTexCoord2f(1, 0);
-        GL11.glVertex3f(x + size, y + -size, z + size);
+        GL11.glVertex3f(this.getX() + size, this.getY() + -size, z + size);
         GL11.glTexCoord2f(0, 0);
-        GL11.glVertex3f(x + size, y + size, z + size);
+        GL11.glVertex3f(this.getX() + size, this.getY() + size, z + size);
         GL11.glTexCoord2f(0, 1);
-        GL11.glVertex3f(x + -size, y + size, z + size);
+        GL11.glVertex3f(this.getX() + -size, this.getY() + size, z + size);
         GL11.glTexCoord2f(1, 1);
-        GL11.glVertex3f(x + -size, y + -size, z + size);
+        GL11.glVertex3f(this.getX() + -size, this.getY() + -size, z + size);
         GL11.glEnd();
 
 
@@ -84,13 +84,13 @@ public class Block extends Instance {
         GL11.glNormal3f(1, 0, 0);
 
         GL11.glTexCoord2f(1, 0);
-        GL11.glVertex3f(x + size, y + -size, z - size);
+        GL11.glVertex3f(this.getX() + size, this.getY() + -size, z - size);
         GL11.glTexCoord2f(0, 0);
-        GL11.glVertex3f(x + size, y + size, z - size);
+        GL11.glVertex3f(this.getX() + size, this.getY() + size, z - size);
         GL11.glTexCoord2f(0, 1);
-        GL11.glVertex3f(x + -size, y + size, z - size);
+        GL11.glVertex3f(this.getX() + -size, this.getY() + size, z - size);
         GL11.glTexCoord2f(1, 1);
-        GL11.glVertex3f(x + -size, y + -size, z - size);
+        GL11.glVertex3f(this.getX() + -size, this.getY() + -size, z - size);
         GL11.glEnd();
 
 
@@ -104,13 +104,13 @@ public class Block extends Instance {
         GL11.glNormal3f(0, -1, 0);
 
         GL11.glTexCoord2f(1, 0);
-        GL11.glVertex3f(x + size, y + -size, z + -size);
+        GL11.glVertex3f(this.getX() + size, this.getY() + -size, z + -size);
         GL11.glTexCoord2f(0, 0);
-        GL11.glVertex3f(x + size, y + size, z + -size);
+        GL11.glVertex3f(this.getX() + size, this.getY() + size, z + -size);
         GL11.glTexCoord2f(0, 1);
-        GL11.glVertex3f(x + size, y + size, z + size);
+        GL11.glVertex3f(this.getX() + size, this.getY() + size, z + size);
         GL11.glTexCoord2f(1, 1);
-        GL11.glVertex3f(x + size, y + -size, z + size);
+        GL11.glVertex3f(this.getX() + size, this.getY() + -size, z + size);
         GL11.glEnd();
 
 
@@ -125,13 +125,13 @@ public class Block extends Instance {
         GL11.glNormal3f(0, 0, -1);
 
         GL11.glTexCoord2f(1, 0);
-        GL11.glVertex3f(x + -size, y + -size, z + size);
+        GL11.glVertex3f(this.getX() + -size, this.getY() + -size, z + size);
         GL11.glTexCoord2f(0, 0);
-        GL11.glVertex3f(x + -size, y + size, z + size);
+        GL11.glVertex3f(this.getX() + -size, this.getY() + size, z + size);
         GL11.glTexCoord2f(0, 1);
-        GL11.glVertex3f(x + -size, y + size, z + -size);
+        GL11.glVertex3f(this.getX() + -size, this.getY() + size, z + -size);
         GL11.glTexCoord2f(1, 1);
-        GL11.glVertex3f(x + -size, y + -size, z + -size);
+        GL11.glVertex3f(this.getX() + -size, this.getY() + -size, z + -size);
         GL11.glEnd();
 
 
@@ -145,13 +145,13 @@ public class Block extends Instance {
         GL11.glNormal3f(0, 0, 1);
 
         GL11.glTexCoord2f(1, 0);
-        GL11.glVertex3f(x + size, y + size, z + size);
+        GL11.glVertex3f(this.getX() + size, this.getY() + size, this.getZ() + size);
         GL11.glTexCoord2f(0, 0);
-        GL11.glVertex3f(x + size, y + size, z + -size);
+        GL11.glVertex3f(this.getX() + size, this.getY() + size, this.getZ() + -size);
         GL11.glTexCoord2f(0, 1);
-        GL11.glVertex3f(x + -size, y + size, z + -size);
+        GL11.glVertex3f(this.getX() + -size, this.getY() + size, this.getZ() + -size);
         GL11.glTexCoord2f(1, 1);
-        GL11.glVertex3f(x + -size, y + size, z + size);
+        GL11.glVertex3f(this.getX() + -size, this.getY() + size, this.getZ() + size);
         GL11.glEnd();
 
         if (textures[5] != null) {
@@ -166,7 +166,7 @@ public class Block extends Instance {
 
 
         for (int i = 0; i < 32; i++) {
-            if (!(Main.getCurrentWorld().getBlockAtPrecise(x, y - Block.getSize() - Block.getSize() * i, z) instanceof AirBlock)) {
+            if (!(Main.getCurrentWorld().getBlockAtPrecise(this.getX(), this.getY() - Block.getSize() - Block.getSize() * i, this.getZ()) instanceof AirBlock)) {
                 GL11.glColor3f(0.6f, 0.6f, 0.6f);
                 break;
 
@@ -184,13 +184,13 @@ public class Block extends Instance {
 
 
         GL11.glTexCoord2f(1, 0);
-        GL11.glVertex3f(x + size, y + -size, z + -size);
+        GL11.glVertex3f(this.getX() + size, this.getY() + -size, this.getZ() + -size);
         GL11.glTexCoord2f(0, 0);
-        GL11.glVertex3f(x + size, y + -size, z + size);
+        GL11.glVertex3f(this.getX() + size, this.getY() + -size, this.getZ() + size);
         GL11.glTexCoord2f(0, 1);
-        GL11.glVertex3f(x + -size, y + -size, z + size);
+        GL11.glVertex3f(this.getX() + -size, this.getY() + -size, this.getZ() + size);
         GL11.glTexCoord2f(1, 1);
-        GL11.glVertex3f(x + -size, y + -size, z + -size);
+        GL11.glVertex3f(this.getX() + -size, this.getY() + -size, this.getZ() + -size);
         GL11.glEnd();
 
 

@@ -53,7 +53,7 @@ public class World {
     }
     
     public void addBlockToWorld(int id, float x, float y, float z){
-    	Block block = (Block) Block.blockIds.get(id);
+    	Block block = ((Block) Block.blockIds.get(id));
     	instances.add(block); //FIXME
     	/*switch(id){
     	case IDReference.COBBLE_ID: instances.add(new CobbleBlock(x, y, z)); break;
@@ -94,9 +94,9 @@ public class World {
         for (int i = 0; i < instances.size(); i++) {
             Instance instance = instances.get(i);
             if (
-                    x >= instance.x && x <= instance.x &&
-                            y >= instance.y && y <= instance.y &&
-                            z >= instance.z && z <= instance.z
+                    x >= instance.getX() && x <= instance.getX() &&
+                            y >= instance.getY() && y <= instance.getY() &&
+                            z >= instance.getZ() && z <= instance.getZ()
 
                     ) {
                 return (Block) instance;
@@ -111,9 +111,9 @@ public class World {
         for (int i = 0; i < instances.size(); i++) {
             Instance instance = instances.get(i);
             if (
-                    x >= instance.x - Block.getSize() / 2 && x <= instance.x + Block.getSize() &&
-                            y >= instance.y - Block.getSize() / 2 && y <= instance.y + Block.getSize() &&
-                            z >= instance.z - Block.getSize() / 2 && z <= instance.z + Block.getSize()
+                    x >= instance.getX() - Block.getSize() / 2 && x <= instance.getX() + Block.getSize() &&
+                            y >= instance.getY() - Block.getSize() / 2 && y <= instance.getY() + Block.getSize() &&
+                            z >= instance.getZ() - Block.getSize() / 2 && z <= instance.getZ() + Block.getSize()
 
                     ) {
                 return (Block) instance;
