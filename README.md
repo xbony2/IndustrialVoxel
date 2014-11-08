@@ -1,4 +1,4 @@
-MinecraftClone
+IndustrialVoxel
 ==============
 
-A minecraft OPENGL clone
+A minecraft clones inspired by IC2 and other mods.
