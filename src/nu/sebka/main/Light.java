@@ -14,8 +14,7 @@ public class Light extends GrassBlock {
 
     @Override
     public void tick() {
-        y += 0.01f;
-
+        this.setY(this.getY() + 0.01F);
     }
 
 

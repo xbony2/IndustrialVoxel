@@ -14,7 +14,7 @@ public abstract class Instance {
 
     public abstract void draw();
     
-    public void setX(int x){
+    public void setX(float x){
     	this.x = x;
     }
     
@@ -22,15 +22,15 @@ public abstract class Instance {
     	return x;
     }
     
-    public void setY(int y){
-    	this.y = y;
+    public void setY(float f){
+    	this.y = f;
     }
     
     public float getY(){
     	return y;
     }
     
-    public void setZ(int z){
+    public void setZ(float z){
     	this.z = z;
     }
     

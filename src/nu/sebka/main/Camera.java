@@ -104,9 +104,9 @@ public class Camera {
                 if (Keyboard.getEventKeyState()) {
                     System.out.println("BLOCK PLACE");
                     Block block = Main.getCurrentWorld().getBlockAt(x, y + Block.getSize() * 2, z);
-                    Block topblock = Main.getCurrentWorld().getBlockAtPrecise(block.x, block.y - Block.getSize() * 2, block.z);
+                    Block topblock = Main.getCurrentWorld().getBlockAtPrecise(block.getX(), block.getY() - Block.getSize() * 2, block.getZ());
                     if (topblock instanceof AirBlock) {
-                        Main.getCurrentWorld().instances.add(new GrassBlock(block.x, block.y - Block.getSize(), block.z));
+                        Main.getCurrentWorld().instances.add(new GrassBlock(block.getX(), block.getY() - Block.getSize(), block.getZ()));
                     }
                 }
             }
