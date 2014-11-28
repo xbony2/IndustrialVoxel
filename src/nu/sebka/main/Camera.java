@@ -109,6 +109,10 @@ public class Camera {
                         Main.getCurrentWorld().instances.add(new GrassBlock(block.getX(), block.getY() - Block.getSize(), block.getZ()));
                     }
                 }
+            }else if(Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)){
+            	if (Keyboard.getEventKeyState()){
+            		System.exit(0);
+            	}
             }
         }
 

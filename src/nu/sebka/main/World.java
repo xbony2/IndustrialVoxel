@@ -1,10 +1,7 @@
 package nu.sebka.main;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -53,11 +50,17 @@ public class World {
     }
     
     public void addBlockToWorld(int id, float x, float y, float z){
-    	Block block = ((Block) Block.blockIds.get(id));
+    	switch(id){
+    	case IDReference.COBBLE_ID: instances.add(new CobbleBlock(x, y, z)); break;
+    	case IDReference.GRASS_ID: instances.add(new GrassBlock(x, y, z)); break;
+    	case IDReference.WOOD_ID: instances.add(new LogBlock(x, y, z)); break;
+    	default: instances.add(new AirBlock(x, y, z));
+    	}
+    	/*Block block = ((Block) Block.blockIds.get(id));
     	block.setX(x);
     	block.setY(y);
     	block.setZ(z);
-    	instances.add(block); //FIXME
+    	instances.add(block); //FIXME*/
     }
 
     public void tick() {
