@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 import nu.sebka.main.blocks.AirBlock;
 import nu.sebka.main.blocks.CobbleBlock;
+import nu.sebka.main.blocks.DirtBlock;
 import nu.sebka.main.blocks.GrassBlock;
 import nu.sebka.main.blocks.IDReference;
 import nu.sebka.main.blocks.LogBlock;
@@ -34,6 +35,7 @@ public class World {
     		float x = Float.parseFloat(parts[1]);
     		float y = Float.parseFloat(parts[2]);
     		float z = Float.parseFloat(parts[3]);
+    		System.out.println(x + " " + y + " " + z);
     		addBlockToWorld(id, x, y, z);
     	}
     	
@@ -54,6 +56,7 @@ public class World {
     	case IDReference.COBBLE_ID: instances.add(new CobbleBlock(x, y, z)); break;
     	case IDReference.GRASS_ID: instances.add(new GrassBlock(x, y, z)); break;
     	case IDReference.WOOD_ID: instances.add(new LogBlock(x, y, z)); break;
+    	case IDReference.DIRT_ID: instances.add(new DirtBlock(x, y, z)); break;
     	default: instances.add(new AirBlock(x, y, z));
     	}
     	/*Block block = ((Block) Block.blockIds.get(id));
