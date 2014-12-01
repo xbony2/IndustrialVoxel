@@ -35,7 +35,6 @@ public class World {
     		float x = Float.parseFloat(parts[1]);
     		float y = Float.parseFloat(parts[2]);
     		float z = Float.parseFloat(parts[3]);
-    		System.out.println(x + " " + y + " " + z);
     		addBlockToWorld(id, x, y, z);
     	}
     	

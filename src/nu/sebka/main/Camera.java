@@ -83,7 +83,7 @@ public class Camera {
     public void tick() {
         boolean falling = false;
         boolean canmove = true;
-        float fallspeed = 0.01f;
+        float fallspeed = 0.005f;
 
         //System.out.println(Main.getCurrentWorld().getBlockAt(x, y + Block.getSize() * 2, z));
 
@@ -94,7 +94,6 @@ public class Camera {
         while (Keyboard.next()) {
             if (Keyboard.isKeyDown(Keyboard.KEY_RETURN)) {
                 if (Keyboard.getEventKeyState()) {
-                    System.out.println("BLOCK PLACE");
                     Block block = Main.getCurrentWorld().getBlockAt(x, y + Block.getSize() * 2, z);
                     Block topblock = Main.getCurrentWorld().getBlockAtPrecise(block.getX(), block.getY() - Block.getSize() * 2, block.getZ());
                     if (topblock instanceof AirBlock) {
@@ -113,7 +112,6 @@ public class Camera {
             try {
                 Mouse.setNativeCursor(null);
             } catch (LWJGLException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }
@@ -132,7 +130,6 @@ public class Camera {
 
         if (Keyboard.isKeyDown(Keyboard.KEY_SPACE)) {
             setY(getY() - Block.getSize() / 2);
-
         }
 
         if (falling) {
