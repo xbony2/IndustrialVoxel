@@ -30,6 +30,7 @@ public class World {
     	
     	while(diskScanner.hasNext()){
     		String s = diskScanner.nextLine();
+    		if(s.equals("")) continue; //Blank line
     		String[] parts = s.split(" ");
     		int id = Integer.parseInt(parts[0]);
     		float x = Float.parseFloat(parts[1]);
