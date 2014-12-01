@@ -49,33 +49,22 @@ public class Camera {
     }
 
     private void initProjection() {
-
-
         glMatrixMode(GL_PROJECTION);
         glLoadIdentity();
         gluPerspective(fov, aspect, near, far);
         glMatrixMode(GL_MODELVIEW);
         glEnable(GL_DEPTH_TEST);
 
-
-        //...
-        // enable face culling
-
-
     }
 
 
     public void useView() {
-
-
         GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
-
 
         glRotatef(rx, 1, 0, 0);
         glRotatef(ry, 0, 1, 0);
         glRotatef(rz, 0, 0, 1);
         glTranslatef(-x, -y, -z);
-
 
     }
 
@@ -84,8 +73,6 @@ public class Camera {
         boolean falling = false;
         boolean canmove = true;
         float fallspeed = 0.005f;
-
-        //System.out.println(Main.getCurrentWorld().getBlockAt(x, y + Block.getSize() * 2, z));
 
         if (Main.getCurrentWorld().getBlockAt(getX(), getY() + Block.getSize() * 2, getZ()) instanceof AirBlock) {
             falling = true;
@@ -139,7 +126,6 @@ public class Camera {
             fallspeed = 0.01f;
         }
 
-
         if (Keyboard.isKeyDown(Keyboard.KEY_LEFT)) {
             setRY(getRY() - 3);
         }
@@ -147,7 +133,6 @@ public class Camera {
         if (Keyboard.isKeyDown(Keyboard.KEY_RIGHT)) {
             setRY(getRY() + 3);
         }
-
 
         setRY(getRY() - Mouse.getDX());
         setRX(getRX() - Mouse.getDY());
