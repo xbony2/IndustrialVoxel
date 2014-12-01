@@ -13,7 +13,7 @@ import static org.lwjgl.util.glu.GLU.gluPerspective;
 import java.util.Random;
 
 import nu.sebka.main.blocks.AirBlock;
-import nu.sebka.main.blocks.GrassBlock;
+import nu.sebka.main.blocks.DirtBlock;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Keyboard;
@@ -106,7 +106,7 @@ public class Camera {
                     Block block = Main.getCurrentWorld().getBlockAt(x, y + Block.getSize() * 2, z);
                     Block topblock = Main.getCurrentWorld().getBlockAtPrecise(block.getX(), block.getY() - Block.getSize() * 2, block.getZ());
                     if (topblock instanceof AirBlock) {
-                        Main.getCurrentWorld().instances.add(new GrassBlock(block.getX(), block.getY() - Block.getSize(), block.getZ()));
+                        Main.getCurrentWorld().instances.add(new DirtBlock(block.getX(), block.getY() - Block.getSize(), block.getZ()));
                     }
                 }
             }else if(Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)){
