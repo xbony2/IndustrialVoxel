@@ -91,14 +91,6 @@ public class Camera {
             falling = true;
         }
 
-
-        if (Keyboard.isKeyDown(Keyboard.KEY_C)) {
-            Random random = new Random();
-            GL11.glCullFace(random.nextInt(5));
-            GL11.glEnable(GL11.GL_CULL_FACE);
-        }
-
-
         while (Keyboard.next()) {
             if (Keyboard.isKeyDown(Keyboard.KEY_RETURN)) {
                 if (Keyboard.getEventKeyState()) {
