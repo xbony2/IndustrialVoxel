@@ -33,9 +33,9 @@ public class World {
     		if(s.equals("")) continue; //Blank line
     		String[] parts = s.split(" ");
     		int id = Integer.parseInt(parts[0]);
-    		float x = Float.parseFloat(parts[1]);
-    		float y = Float.parseFloat(parts[2]);
-    		float z = Float.parseFloat(parts[3]);
+    		float x = Float.parseFloat(parts[1]) * 0.08f;
+    		float y = Float.parseFloat(parts[2]) * 0.08f;
+    		float z = Float.parseFloat(parts[3]) * 0.08f;
     		addBlockToWorld(id, x, y, z);
     	}
     	
