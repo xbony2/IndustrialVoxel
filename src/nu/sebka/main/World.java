@@ -40,30 +40,16 @@ public class World {
     	}
     	
         cam.setY(-Block.getSize() * 2);
-
-        /*for (int i = 0; i < 16; i += 1) {
-            for (int ii = 0; ii < 16; ii += 1) {
-                instances.add(new GrassBlock(i * Block.getSize(), 0, -ii * Block.getSize()));
-            }
-        }
-        
-        instances.add(new CobbleBlock(5*Block.getSize(),-Block.getSize()*2,-5*Block.getSize()));
-        instances.add(new LogBlock(5*Block.getSize(),-Block.getSize()*3,-5*Block.getSize()));*/
     }
     
     public void addBlockToWorld(int id, float x, float y, float z){
-    	switch(id){
+    	switch(id){ //FIXME set up a proper system
     	case IDReference.COBBLE_ID: instances.add(new CobbleBlock(x, y, z)); break;
     	case IDReference.GRASS_ID: instances.add(new GrassBlock(x, y, z)); break;
     	case IDReference.WOOD_ID: instances.add(new LogBlock(x, y, z)); break;
     	case IDReference.DIRT_ID: instances.add(new DirtBlock(x, y, z)); break;
     	default: instances.add(new AirBlock(x, y, z));
     	}
-    	/*Block block = ((Block) Block.blockIds.get(id));
-    	block.setX(x);
-    	block.setY(y);
-    	block.setZ(z);
-    	instances.add(block); //FIXME*/
     }
 
     public void tick() {
@@ -73,57 +59,37 @@ public class World {
     }
 
     public void draw() {
-
-
         GL11.glLoadIdentity();
         cam.tick();
         cam.useView();
 
-
         GL11.glPushMatrix();
         for (Instance instance : instances) {
-
             instance.draw();
-
-
         }
         GL11.glPopMatrix();
-
-
     }
 
-
-    public Block getBlockAtPrecise(double x, double y, double z) {
+    public Block getBlockAtPrecise(double x, double y, double z){
         for (int i = 0; i < instances.size(); i++) {
             Instance instance = instances.get(i);
-            if (
-                    x >= instance.getX() && x <= instance.getX() &&
-                            y >= instance.getY() && y <= instance.getY() &&
-                            z >= instance.getZ() && z <= instance.getZ()
-
-                    ) {
+            if ( x >= instance.getX() && x <= instance.getX() &&  y >= instance.getY() && y <= instance.getY() 
+            		&&  z >= instance.getZ() && z <= instance.getZ()){
                 return (Block) instance;
             }
         }
-
         return new AirBlock((float) x, (float) y, (float) z);
     }
-
 
     public Block getBlockAt(double x, double y, double z) {
         for (int i = 0; i < instances.size(); i++) {
             Instance instance = instances.get(i);
-            if (
-                    x >= instance.getX() - Block.getSize() / 2 && x <= instance.getX() + Block.getSize() &&
-                            y >= instance.getY() - Block.getSize() / 2 && y <= instance.getY() + Block.getSize() &&
-                            z >= instance.getZ() - Block.getSize() / 2 && z <= instance.getZ() + Block.getSize()
-
-                    ) {
+            if (x >= instance.getX() - Block.getSize() / 2 && x <= instance.getX() + Block.getSize() 
+            		&&  y >= instance.getY() - Block.getSize() / 2 && y <= instance.getY() + Block.getSize() 
+            		&& z >= instance.getZ() - Block.getSize() / 2 && z <= instance.getZ() + Block.getSize()){
                 return (Block) instance;
             }
         }
-
         return new AirBlock((float) x, (float) y, (float) z);
     }
-
 }

@@ -17,7 +17,6 @@ public class Main {
     static ArrayList<World> worlds = new ArrayList<World>();
     public static int worldIndex = 0;
 
-
     public Main(){
         try {
             Display.setDisplayMode(new DisplayMode(WIDTH, HEIGHT));
@@ -25,7 +24,6 @@ public class Main {
             Display.create();
             worlds.add(new World());
         } catch (LWJGLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -45,15 +43,11 @@ public class Main {
     }
 
     void update() {
-
         for (World world : worlds) {
             world.tick();
             world.draw();
         }
-
-
     }
-
 
     public static void main(String[] args){
         String operatingSystem = System.getProperty("os.name");
@@ -73,6 +67,4 @@ public class Main {
     public static World getCurrentWorld() {
         return worlds.get(worldIndex);
     }
-
-
 }

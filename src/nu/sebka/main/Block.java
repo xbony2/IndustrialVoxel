@@ -50,15 +50,12 @@ public class Block extends Instance {
     @Override
     public void draw() {
 
-
         if (textures[0] != null) {
             textures[0].bind();
         }
 
-
         // White side - BACK
         GL11.glBegin(GL11.GL_POLYGON);
-
 
         GL11.glColor3f(1.0f, 1.0f, 1.0f);
         GL11.glNormal3f(-1, 0, 0);
@@ -72,7 +69,6 @@ public class Block extends Instance {
         GL11.glTexCoord2f(1, 1);
         GL11.glVertex3f(this.getX() + -size, this.getY() + -size, this.getZ() + size);
         GL11.glEnd();
-
 
         if (textures[1] != null) {
             textures[1].bind();
@@ -93,7 +89,6 @@ public class Block extends Instance {
         GL11.glVertex3f(this.getX() + -size, this.getY() + -size, this.getZ() - size);
         GL11.glEnd();
 
-
         if (textures[2] != null) {
             textures[2].bind();
         }
@@ -113,11 +108,9 @@ public class Block extends Instance {
         GL11.glVertex3f(this.getX() + size, this.getY() + -size, this.getZ() + size);
         GL11.glEnd();
 
-
         if (textures[3] != null) {
             textures[3].bind();
         }
-
 
         // Green side - LEFT
         GL11.glBegin(GL11.GL_POLYGON);
@@ -133,7 +126,6 @@ public class Block extends Instance {
         GL11.glTexCoord2f(1, 1);
         GL11.glVertex3f(this.getX() + -size, this.getY() + -size, this.getZ() + -size);
         GL11.glEnd();
-
 
         if (textures[4] != null) {
             textures[4].bind();
@@ -164,7 +156,6 @@ public class Block extends Instance {
         GL11.glColor3f(1.0f, 1.0f, 1.0f);
         GL11.glNormal3f(0, 1, 0);
 
-
         for (int i = 0; i < 32; i++) {
             if (!(Main.getCurrentWorld().getBlockAtPrecise(this.getX(), this.getY() - Block.getSize() - Block.getSize() * i, this.getZ()) instanceof AirBlock)) {
                 GL11.glColor3f(0.6f, 0.6f, 0.6f);
@@ -174,14 +165,11 @@ public class Block extends Instance {
                 GL11.glColor3f(1.0f, 1.0f, 1.0f);
             }
 
-
             //else if(!(Main.getCurrentWorld().getBlockAtPrecise(x,y-Block.getSize()*3, z) instanceof AirBlock)){
             //GL11.glColor3f(0.8f, 0.8f, 0.8f);
 
             //}
-
         }
-
 
         GL11.glTexCoord2f(1, 0);
         GL11.glVertex3f(this.getX() + size, this.getY() + -size, this.getZ() + -size);
@@ -193,12 +181,10 @@ public class Block extends Instance {
         GL11.glVertex3f(this.getX() + -size, this.getY() + -size, this.getZ() + -size);
         GL11.glEnd();
 
-
     }
 
     public static float getSize() {
         return size * 2;
     }
-
 
 }

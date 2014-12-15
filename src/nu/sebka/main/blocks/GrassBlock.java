@@ -19,5 +19,4 @@ public class GrassBlock extends Block {
         textures[5] = GRASS_TEXTURE;
     }
 
-
 }

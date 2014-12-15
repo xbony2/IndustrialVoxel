@@ -17,5 +17,4 @@ public class CobbleBlock extends Block {
         textures[4] = COBBLE_TEXTURE;
         textures[5] = COBBLE_TEXTURE;
     }
-
 }

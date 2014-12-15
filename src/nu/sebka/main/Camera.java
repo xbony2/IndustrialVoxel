@@ -57,7 +57,6 @@ public class Camera {
 
     }
 
-
     public void useView() {
         GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
 
@@ -67,7 +66,6 @@ public class Camera {
         glTranslatef(-x, -y, -z);
 
     }
-
 
     public void tick() {
         boolean falling = false;
@@ -96,9 +94,9 @@ public class Camera {
 
         if (Keyboard.isKeyDown(Keyboard.KEY_W) && canmove) {
             move(1, 0.01f);
-            try {
+            try{
                 Mouse.setNativeCursor(null);
-            } catch (LWJGLException e) {
+            }catch (LWJGLException e){
                 e.printStackTrace();
             }
         }

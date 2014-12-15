@@ -8,5 +8,4 @@ public class AirBlock extends Block {
         super(IDReference.AIR_ID, x, y, z);
         
     }
-
 }
