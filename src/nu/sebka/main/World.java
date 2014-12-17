@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import nu.sebka.main.api.block.Block;
 import nu.sebka.main.blocks.AirBlock;
 import nu.sebka.main.blocks.CobbleBlock;
 import nu.sebka.main.blocks.DirtBlock;

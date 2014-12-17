@@ -1,7 +1,9 @@
-package nu.sebka.main;
+package nu.sebka.main.api.block;
 
 import java.io.IOException;
 
+import nu.sebka.main.Instance;
+import nu.sebka.main.Main;
 import nu.sebka.main.blocks.AirBlock;
 
 import org.apache.commons.collections.BidiMap;

@@ -2,7 +2,7 @@ package nu.sebka.main.blocks;
 
 import org.newdawn.slick.opengl.Texture;
 
-import nu.sebka.main.Block;
+import nu.sebka.main.api.block.Block;
 
 public class GrassBlock extends Block {
 

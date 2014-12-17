@@ -1,6 +1,6 @@
 package nu.sebka.main.blocks;
 
-import nu.sebka.main.Block;
+import nu.sebka.main.api.block.Block;
 
 public class AirBlock extends Block {
 

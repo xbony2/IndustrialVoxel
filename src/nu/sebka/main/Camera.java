@@ -12,6 +12,7 @@ import static org.lwjgl.util.glu.GLU.gluPerspective;
 
 import java.util.Random;
 
+import nu.sebka.main.api.block.Block;
 import nu.sebka.main.blocks.AirBlock;
 import nu.sebka.main.blocks.DirtBlock;
 
@@ -68,13 +69,8 @@ public class Camera {
     }
 
     public void tick() {
-        boolean falling = false;
         boolean canmove = true;
-        float fallspeed = 0.005f;
-
-        if (Main.getCurrentWorld().getBlockAt(getX(), getY() + Block.getSize() * 2, getZ()) instanceof AirBlock) {
-            falling = true;
-        }
+        float fallspeed = 0.08f;
 
         while (Keyboard.next()) {
             if (Keyboard.isKeyDown(Keyboard.KEY_RETURN)) {
@@ -117,11 +113,8 @@ public class Camera {
             setY(getY() - Block.getSize() / 2);
         }
 
-        if (falling) {
-            fallspeed += 0.00016f;
-            setY(getY() + fallspeed);
-        } else {
-            fallspeed = 0.01f;
+        if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)) {
+            setY(getY() + fallspeed / 2);
         }
 
         if (Keyboard.isKeyDown(Keyboard.KEY_LEFT)) {
